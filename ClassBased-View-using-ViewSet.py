@@ -32,12 +32,13 @@ class CourseListView(ViewSet):
         return Response(courseSerializer.data)
     
     def destroy(self, request, pk=None):
-        course = Course.objects.get(pk)
+        course = Course.objects.get(pk=pk)
         course.delete()
+        return Response({'message':'Successfully deleted'})
     
     def update(self, request, pk=None):
-        course = Course.objects.get(pk)
-        courseSerilizers = CourseSerilizers(course)
+        course = Course.objects.get(pk=pk)
+        courseSerilizers = CourseSerilizers(course,data=request.data)
         if courseSerilizers.is_valid():
             courseSerilizers.save()
             return Response({"message": "Course created successfully."},status=201 )
