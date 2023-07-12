@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid mt-3 mb-3" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        <!-- filter -->
+        <div class="col-lg-3 mx-auto">
+            <ul class="list-group">
+                <a href="/" class="list-group-item list-group-item-action">
+                    All Product
+                </a>
+                {% for category in categories %}
+                <a href="/?category={{ category.id}} " class="list-group-item list-group-item-action">
+                    {{ category.name }}
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="products" class="col-lg-8 mx-auto  ">
+            <div class="row">
+                {% for product in products %}
+                <div class="card mx-auto mb-3 " style="width: 18rem;">
+                    <img src='{{ product.image.url }}' class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <strong>
+                            <p class="card-text">${{product.price}}</p>
+                        </strong>
+                        <p class="card-text">{{product.description}}</p>
+                        <form action="/" method="post">
+                            {% csrf_token %}
+                            <input hidden href="#" type="text" name="product" value="{{product.id}}" class="btn btn-light border btn-sm" >
+                            {% if request.user.is_authenticated %}
+                              <a class="btn btn-primary" href="/login">Visit Site</a>
+
+                            {%else%}
+                            <a class="btn btn-primary" href="{{product.url}}">Visit Site</a>
+
+
+                            {% endif %}
+
+<!--                            <input href="https://www.daraz.pk/#hp-categories" type="submit" class="btn btn-light border btn-sm" value="Visit Site ">-->
+                        </form>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
