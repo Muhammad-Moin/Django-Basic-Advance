@@ -1,0 +1,40 @@
+pip install djangorestframework
+1-	python manage.py runserver #for run the server.
+2- 	python manage.py makemigrations #for model convert into database table after that run the migrate command.
+3-	python manage.py migrate
+4-	django-admin startproject <appname> #for create a app within a django project.
+5-	python manage.py createsuperuser
+6-	python manage.py startapp <app-name>
+7-	commad to check all the version of installed modules
+	pip freeze
+8-	check the version
+	python -m django --version
+9-	command to create an app:
+	python manage.py startapp <app-name>
+	Ex:
+	python manage.py startapp myapp
+10- 	to see all migrations
+	python manage.py showmigrations
+11-	to see spacific migration of spectific app
+	python manage.py showmigrations <app-name>
+	Ex:
+	python manage.py showmigrations api
+12-	view the database schema
+	python manage.py inspectdb
+
+----------------------------------------------------------
+Django view all items in a model
+13-	Users.objects.all()
+	here Users is a model name
+
+Filter items in a model
+14-	Users.objects.filter(name='Moin')
+
+Get the particular item in a model
+15-	Users.objects.get(id=1)
+
+Delete an object
+16-	Users.objects.filter(id=1).delete()
+
+How to route a user request in Django
+user -> manage.py -> setting.py -> urls.py -> view.py -> models.py -> templates
